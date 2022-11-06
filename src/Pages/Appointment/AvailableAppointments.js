@@ -7,22 +7,22 @@ import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
 
 const AvailableAppointments = ({date}) => {
-    // const [services,setServices] = useState([]);
+    const [services,setServices] = useState([]);
     const [treatment,setTreatment] = useState(null);
     const formattedDate = format(date,'PP');
-    const{date:services,isLoading,refetch} = useQuery(['available',formattedDate],()=>
-    fetch(`http://localhost:5000/available?date=${formattedDate}`)
-    .then(res =>res.json())
-    )
+    // const{date:services,isLoading,refetch} = useQuery(['available',formattedDate],()=>
+    // fetch(`http://localhost:5000/available?date=${formattedDate}`)
+    // .then(res =>res.json())
+    // )
 
-    if(isLoading){
-        return <Loading></Loading>
-    }
-    // useEffect(()=>{
-    //     fetch(`http://localhost:5000/available?date=${formattedDate}`)
-    //     .then(res =>res.json())
-    //     .then(data =>setServices(data))
-    // },[formattedDate])
+    // if(isLoading){
+    //     return <Loading></Loading>
+    // }
+    useEffect(()=>{
+        fetch(`http://localhost:5000/available?date=${formattedDate}`)
+        .then(res =>res.json())
+        .then(data =>setServices(data))
+    },[formattedDate])
     return (
         <div>
             <h4 className='text-xl text-secondary text-center my-12'>Available Appointments on {format(date,'PP')}</h4>
@@ -32,8 +32,10 @@ const AvailableAppointments = ({date}) => {
                         key={service.id}
                        service={service}
                        setTreatment={setTreatment}
-                       refetch={refetch}
+                    //    refetch={refetch}
                     ></Service>)
+
+                    // <Service></Service>
                 }
             </div>
             {treatment && 
