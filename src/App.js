@@ -14,6 +14,7 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import MyAppointments from './Pages/Dashboard/MyAppointments';
 import MyReview from './Pages/Dashboard/MyReview';
 import MyHistory from './Pages/Dashboard/MyHistory';
+import Payment from './Pages/Dashboard/Payment';
 function App() {
   return (
     <div className='max-w-7xl mx-auto px-12' >
@@ -33,6 +34,7 @@ function App() {
             <Route index element={<MyAppointments></MyAppointments>}></Route>
             <Route path='review' element={<MyReview></MyReview>}></Route>
             <Route path='history' element={<MyHistory></MyHistory>}></Route>
+            <Route path='payment/:id' element={<Payment></Payment>}></Route>
           </Route>
         <Route path="login" element={<Login/>} />
         <Route path="signup" element={<SignUp/>} />
